@@ -1,4 +1,15 @@
-nginx:
+emtii-local-nginx:
   image: nginx:alpine
   ports:
     - 80:80
+  links:
+    - emtii-local-php7
+  volumes:
+    - .:/var/www/html
+
+emtii-local-php7:
+  image: php:7.0:7.0-fpm-alpine
+  expose:
+    - 9000
+  volumes:
+    - .:/var/www/html

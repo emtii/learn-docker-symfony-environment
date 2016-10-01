@@ -3,8 +3,8 @@ This repository represents my steps learning docker. Goal of this is to create a
 
 ## here we provide a LEMP stack
 * Linux
-* PHP7
-* Nginx
+* PHP7 (https://hub.docker.com/_/php/)
+* Nginx (https://hub.docker.com/_/nginx/)
 * MySQL
 
 ## best practice
@@ -21,3 +21,5 @@ This repository represents my steps learning docker. Goal of this is to create a
 ## basic knowledge needed before
 * containers are built out of images (official ones or private custom ones)
 * we mainly use official images (if possible based on alpine for best speed)
+* we use php-fpm for performance (and to learn config as well)
+* we understand, that volumes tag syncs host with containers file system e.g. ("." with "/var/www/html")
