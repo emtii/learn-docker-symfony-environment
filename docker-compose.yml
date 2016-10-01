@@ -13,6 +13,8 @@ emtii-local-php:
   image: php:7.0-fpm-alpine
   expose:
     - 9000
+  links:
+    - emtii-local-mysql
   volumes_from:
     - emtii-local-app
 
@@ -21,4 +23,24 @@ emtii-local-app:
   image: busybox:musl
   volumes:
     - .:/var/www/html
+  command: "true"
+
+emtii-local-mysql:
+  container_name: emtii.local.mysql
+  image: mysql:latest
+  volumes_from:
+    - emtii-local-mysql-db
+  environment:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_ALLOW_EMPTY_PASSWORD: 0
+    MYSQL_RANDOM_ROOT_PASSWORD: admin
+    MYSQL_DB: project
+    MYSQL_USER: admin
+    MYSQL_PASS: admin
+
+emtii-local-mysql-db:
+  container_name: emtii.local.mysql.db
+  image: busybox:musl
+  volumes:
+    - /var/lib/mysql
   command: "true"
