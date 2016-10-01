@@ -1,4 +1,5 @@
 # learn-docker-dev-environment
+This repository represents my steps learning docker. Goal of this is to create a local docker dev environment provided by several containers.
 
 ## here we provide a LEMP stack
 * Linux
