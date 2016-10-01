@@ -10,7 +10,7 @@ emtii-local-nginx:
 
 emtii-local-php:
   container_name: emtii.local.php
-  image: php:7.0-fpm-alpine
+  build: ./build/php-fpm/
   expose:
     - 9000
   links:
