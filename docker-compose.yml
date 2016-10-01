@@ -8,7 +8,7 @@ emtii-local-nginx:
     - .:/var/www/html
 
 emtii-local-php7:
-  image: php:7.0:7.0-fpm-alpine
+  image: php:7.0-fpm-alpine
   expose:
     - 9000
   volumes:
