@@ -2,10 +2,10 @@
 This repository represents my steps learning docker. Goal of this is to create a local docker dev environment provided by several containers.
 
 ## here we provide a LEMP stack
-* Linux
+* Linux (alpine, if possible)
 * PHP7 (https://hub.docker.com/_/php/)
 * Nginx (https://hub.docker.com/_/nginx/)
-* MySQL
+* MySQL (https://hub.docker.com/_/mysql/)
 
 ## best practice
 * use docker compose to orchestrate containers
