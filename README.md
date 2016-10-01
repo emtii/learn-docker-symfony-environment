@@ -23,3 +23,4 @@ This repository represents my steps learning docker. Goal of this is to create a
 * we mainly use official images (if possible based on alpine for best speed)
 * we use php-fpm for performance (and to learn config as well)
 * we understand, that volumes tag syncs host with containers file system e.g. ("." with "/var/www/html")
+* data container holds volumes
