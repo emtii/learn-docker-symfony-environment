@@ -19,5 +19,5 @@ This repository represents my steps learning docker. Goal of this is to create a
 * a container for the application code
 
 ## basic knowledge needed before
-* containers are built out of images (official ones or custom ones)
-* we use a very basic official image: alpine (edge) for all our container
+* containers are built out of images (official ones or private custom ones)
+* we mainly use official images (if possible based on alpine for best speed)
