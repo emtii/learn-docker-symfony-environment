@@ -1,46 +1,49 @@
-emtii-local-nginx:
-  container_name: emtii.local.nginx
-  build: ./build/nginx/
-  ports:
-    - 80:80
-  links:
-    - emtii-local-php
-  volumes_from:
-    - emtii-local-app
+version: "2"
 
-emtii-local-php:
-  container_name: emtii.local.php
-  build: ./build/php-fpm/
-  expose:
-    - 9000
-  links:
-    - emtii-local-mysql
-  volumes_from:
-    - emtii-local-app
+services:
+  emtii-local-nginx:
+    container_name: emtii.local.nginx
+    build: ./build/nginx/
+    ports:
+      - 80:80
+    links:
+      - emtii-local-php
+    volumes_from:
+      - emtii-local-app
 
-emtii-local-app:
-  container_name: emtii.local.app
-  image: busybox:musl
-  volumes:
-    - .:/var/www/html
-  command: "true"
+  emtii-local-php:
+    container_name: emtii.local.php
+    build: ./build/php-fpm/
+    expose:
+      - 9000
+    links:
+      - emtii-local-mysql
+    volumes_from:
+      - emtii-local-app
 
-emtii-local-mysql:
-  container_name: emtii.local.mysql
-  image: mysql:latest
-  volumes_from:
-    - emtii-local-mysql-db
-  environment:
-    MYSQL_ROOT_PASSWORD: secret
-    MYSQL_ALLOW_EMPTY_PASSWORD: 0
-    MYSQL_RANDOM_ROOT_PASSWORD: admin
-    MYSQL_DB: project
-    MYSQL_USER: admin
-    MYSQL_PASS: admin
+  emtii-local-app:
+    container_name: emtii.local.app
+    image: busybox:musl
+    volumes:
+      - .:/var/www/html
+    command: "true"
 
-emtii-local-mysql-db:
-  container_name: emtii.local.mysql.db
-  image: busybox:musl
-  volumes:
-    - /var/lib/mysql
-  command: "true"
+  emtii-local-mysql:
+    container_name: emtii.local.mysql
+    image: mysql:latest
+    volumes_from:
+      - emtii-local-mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_ALLOW_EMPTY_PASSWORD: 0
+      MYSQL_RANDOM_ROOT_PASSWORD: admin
+      MYSQL_DB: project
+      MYSQL_USER: admin
+      MYSQL_PASS: admin
+
+  emtii-local-mysql-db:
+    container_name: emtii.local.mysql.db
+    image: busybox:musl
+    volumes:
+      - /var/lib/mysql
+    command: "true"
