@@ -1,18 +1,19 @@
 # learn-docker-dev-environment
 This repository represents my steps learning docker. Goal of this is to create a local docker dev environment provided by several containers.
 
-## here we provide a LEMP stack
+## here we provide a LAMP stack
 * Linux (alpine, if possible)
 * PHP7 (https://hub.docker.com/_/php/)
-* Nginx (https://hub.docker.com/_/nginx/)
+* httpd (https://hub.docker.com/_/httpd/)
 * MySQL (https://hub.docker.com/_/mysql/)
 
 ## best practice
 * use docker compose to orchestrate containers
 * use only one process per container
+* redirect logs to container's standard output, never persist data in container
 
 ## this in mind, we separate things as follows:
-* a container for Nginx
+* a container for httpd
 * a container for PHP-FPM
 * a container for MySQL
 * a container to make MySQL data persistent
@@ -24,3 +25,4 @@ This repository represents my steps learning docker. Goal of this is to create a
 * we use php-fpm for performance (and to learn config as well)
 * we understand, that volumes tag syncs host with containers file system e.g. ("." with "/var/www/html")
 * data container can persist data volumes for app and database
+# data container exit on startup, thats fine, they work as long as they are linked

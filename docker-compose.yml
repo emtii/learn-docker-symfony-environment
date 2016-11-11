@@ -1,9 +1,10 @@
 version: "2"
 
 services:
-  emtii-local-nginx:
-    container_name: emtii.local.nginx
-    build: ./build/nginx/
+  emtii-local-httpd:
+    container_name: emtii.local.httpd
+    #image: httpd:alpine
+    build: ./build/httpd/
     ports:
       - 80:80
     links:
@@ -26,7 +27,8 @@ services:
     image: busybox:musl
     volumes:
       - .:/var/www/html
-    command: "true"
+    command:
+      - "true"
 
   emtii-local-mysql:
     container_name: emtii.local.mysql
@@ -46,4 +48,5 @@ services:
     image: busybox:musl
     volumes:
       - /var/lib/mysql
-    command: "true"
+    command:
+      - "true"
