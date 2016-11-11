@@ -27,6 +27,7 @@ services:
     image: busybox:musl
     volumes:
       - .:/var/www/html
+      - /tmp/:/tmp/
     command:
       - "true"
 
