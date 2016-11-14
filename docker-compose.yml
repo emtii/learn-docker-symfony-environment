@@ -1,9 +1,19 @@
 version: "2"
 
 services:
-  emtii-local-nginx:
-    container_name: emtii.local.nginx
-    build: ./build/nginx/
+#  emtii-local-nginx:
+#    container_name: emtii.local.nginx
+#    build: ./build/nginx/
+#    ports:
+#      - 80:80
+#    links:
+#      - emtii-local-php
+#    volumes_from:
+#      - emtii-local-app
+
+  emtii-local-apache:
+    container_name: emtii.local.apache
+    build: ./build/apache/
     ports:
       - 80:80
     links:
