@@ -37,4 +37,4 @@ fi
 
 chmod -R 0777 .
 
-php -a
+php-fpm
