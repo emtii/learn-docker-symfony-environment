@@ -2,6 +2,8 @@ FROM php:7.0-fpm-alpine
 
 MAINTAINER emtii <marcel.thiesies@me.com>
 
+RUN apk -U add libpng-dev libpng zlib zlib-dev
+
 RUN docker-php-ext-install pdo_mysql && \
     docker-php-ext-install gd && \
     docker-php-ext-install zip
