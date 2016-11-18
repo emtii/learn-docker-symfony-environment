@@ -16,27 +16,27 @@ services:
     build: ./build/apache/
     ports:
       - 80:80
-    links:
-      - emtii-local-php
     volumes_from:
       - emtii-local-app
+    networks:
+      - emtii-local
 
   emtii-local-php:
     container_name: emtii.local.php
     build: ./build/php-fpm/
     expose:
       - 9000
-    links:
-      - emtii-local-mysql
     volumes_from:
       - emtii-local-app
+    networks:
+      - emtii-local
 
   emtii-local-app:
     container_name: emtii.local.app
     image: busybox:musl
     volumes:
-      - .:/var/www/html
-    command: "true"
+      - ..:/var/www
+    command: "watch -n 3600 uptime"
 
   emtii-local-mysql:
     container_name: emtii.local.mysql
@@ -50,10 +50,15 @@ services:
       MYSQL_DB: project
       MYSQL_USER: admin
       MYSQL_PASS: admin
+    networks:
+      - emtii-local
 
   emtii-local-mysql-db:
     container_name: emtii.local.mysql.db
     image: busybox:musl
     volumes:
       - /var/lib/mysql
-    command: "true"
+    command: "watch -n 3600 uptime"
+networks:
+  emtii-local:
+    driver: bridge
