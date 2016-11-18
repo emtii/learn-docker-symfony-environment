@@ -35,7 +35,7 @@ services:
     container_name: emtii.local.app
     image: busybox:musl
     volumes:
-      - ..:/var/www/html
+      - ..:/var/www/html:rw
     command: "watch -n 3600 uptime"
 
   emtii-local-mysql:
