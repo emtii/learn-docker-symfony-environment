@@ -2,8 +2,9 @@ FROM php:7.0-fpm-alpine
 
 MAINTAINER emtii <marcel.thiesies@me.com>
 
-RUN docker-php-ext-install \
-        pdo_mysql
+RUN docker-php-ext-install pdo_mysql && \
+    docker-php-ext-install gd && \
+    docker-php-ext-install zip
 
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
