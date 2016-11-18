@@ -35,6 +35,10 @@ if [ -d recovery/common ] && [ -f recovery/common/composer.json ]; then
   cd ../..
 fi
 
+if [ ! -f config.php ]; then
+  touch config.php
+fi
+
 chmod -R 0777 .
 
 php-fpm
