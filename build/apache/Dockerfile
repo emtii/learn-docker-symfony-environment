@@ -23,6 +23,6 @@ COPY configs/shopware.conf /etc/apache2/vhost.d/
 
 EXPOSE 80 443
 
-VOLUME [ "/var/www" ]
+VOLUME [ "/var/www/html" ]
 
 CMD [ "httpd", "-D", "FOREGROUND" ]
