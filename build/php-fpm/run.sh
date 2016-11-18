@@ -22,7 +22,7 @@ EXIT_CODE=$?
 if [ "0" != "$EXIT_CODE" ]; then
   print_error 'Failed to install dependencies due to previous errors. Error code was:' $EXIT_CODE
   exit 30
-if
+fi
 
 if [ -d recovery/common ] && [ -f recovery/common/composer.json ]; then
   cd recovery/common
@@ -30,8 +30,8 @@ if [ -d recovery/common ] && [ -f recovery/common/composer.json ]; then
   EXIT_CODE=$?
   if [ "0" != "$EXIT_CODE" ]; then
     print_error 'Failed to install dependencies in recovery path due to previous errors. Error code was:' $EXIT_CODE
-    exit 30
-  if
+    exit 40
+  fi
   cd ../..
 fi
 
