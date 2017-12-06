@@ -1,53 +1,62 @@
-version: "2"
+version: "3"
 
 services:
-  emtii-local-httpd:
-    container_name: emtii.local.httpd
-    #image: httpd:alpine
+  emtii-httpd:
+    container_name: emtii.httpd
     build: ./build/httpd/
     ports:
       - 80:80
     links:
-      - emtii-local-php
-    volumes_from:
-      - emtii-local-app
+      - emtii-php
 
-  emtii-local-php:
-    container_name: emtii.local.php
+  emtii-php:
+    container_name: emtii.php
     build: ./build/php-fpm/
     expose:
       - 9000
     links:
-      - emtii-local-mysql
+      - emtii-mysql-master
+
+  emtii-mysql-master:
+    container_name: emtii.mysql.master
+    build: ./build/mysql/master
+    ports:
+      - '3306'
     volumes_from:
-      - emtii-local-app
+      - emtii-mysql
+    env_file:
+      - ./build/mysql/variables.env
 
-  emtii-local-app:
-    container_name: emtii.local.app
-    image: busybox:musl
-    volumes:
-      - .:/var/www/html
-      - /tmp/:/tmp/
-    command:
-      - "true"
+  emtii-mysql-slave-1:
+    container_name: emtii.mysql.slave.1
+    build: ./build/mysql/slave
+    ports:
+      - '3306'
+    depends_on:
+      - mysql-master
+    env_file:
+      - ./build/mysql/variables.env
+      - ./build/mysql/slave/variables.env
 
-  emtii-local-mysql:
-    container_name: emtii.local.mysql
-    image: mysql:latest
-    volumes_from:
-      - emtii-local-mysql-db
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_ALLOW_EMPTY_PASSWORD: 0
-      MYSQL_RANDOM_ROOT_PASSWORD: admin
-      MYSQL_DB: project
-      MYSQL_USER: admin
-      MYSQL_PASS: admin
+  emtii-mysql-slave-2:
+    container_name: emtii.mysql.slave.2
+    build: ./build/mysql/slave
+    ports:
+      - '3306'
+    depends_on:
+      - mysql-master
+    env_file:
+      - ./build/mysql/variables.env
+      - ./build/mysql/slave/variables.env
 
-  emtii-local-mysql-db:
-    container_name: emtii.local.mysql.db
-    image: busybox:musl
-    volumes:
-      - /var/lib/mysql
-    command:
-      - "true"
+ redis:
+    container_name: emtii.redis
+    build: ./build/redis
+    ports:
+      - "6379"
+
+volumes:
+  emtii-mysql:
+    driver: local
+  emtii-app:
+    driver: local

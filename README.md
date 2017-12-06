@@ -1,5 +1,10 @@
 # learn-docker-dev-environment
-This repository represents my steps learning docker. Goal of this is to create a local docker dev environment provided by several containers.
+This repository represents my steps learning docker. Goal of this is:
+ 
+* to create a local docker dev environment provided by several containers.
+* to be able to host this stack on:
+  * docker cloud for container orchestration
+  * digital ocean as cloud provider
 
 ## here we provide a LAMP stack
 * Linux (alpine, if possible)
@@ -16,8 +21,9 @@ This repository represents my steps learning docker. Goal of this is to create a
 * a container for httpd
 * a container for PHP-FPM
 * a container for MySQL
-* a container to make MySQL data persistent
-* a container for the application code
+* we bind two volumes for persistent data:
+  * app data
+  * mysql data
 
 ## basic knowledge needed before
 * containers are built out of images (official ones or private custom ones)
@@ -26,3 +32,6 @@ This repository represents my steps learning docker. Goal of this is to create a
 * we understand, that volumes tag syncs host with containers file system e.g. ("." with "/var/www/html")
 * data container can persist data volumes for app and database
 * data container exit on startup, thats fine, they work as long as they are linked
+
+## todo
+* add redis to stack

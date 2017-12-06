@@ -1,6 +1,6 @@
-FROM httpd:alpine
+FROM httpd:2.2-alpine
 
-MAINTAINER emtii <marcel.thiesies@me.com>
+MAINTAINER emtii <marcel.thiesies@bestit-online.de>
 
 # install open ssl
 RUN DEBIAN_FRONTEND=noninteractive apk update -q \
