@@ -10,7 +10,9 @@ This repository represents my steps learning docker. Goal of this is:
 * Linux (alpine, if possible)
 * PHP7 (https://hub.docker.com/_/php/)
 * httpd (https://hub.docker.com/_/httpd/)
-* MySQL (https://hub.docker.com/_/mysql/)
+* MySQL Master & Slave (https://hub.docker.com/_/mysql/)
+* Redis (https://hub.docker.com/_/redis/)
+
 
 ## best practice
 * use docker compose to orchestrate containers
@@ -33,5 +35,11 @@ This repository represents my steps learning docker. Goal of this is:
 * data container can persist data volumes for app and database
 * data container exit on startup, thats fine, they work as long as they are linked
 
-## todo
-* add redis to stack
+## docker operations
+* 1 node cluster contains 1 node
+* 1 stack contains n services:
+  * php-fpm service
+  * httpd service
+  * mysql service
+  * redis service
+* 1 service contains n container (similar ones)

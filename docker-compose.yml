@@ -49,7 +49,7 @@ services:
       - ./build/mysql/variables.env
       - ./build/mysql/slave/variables.env
 
- redis:
+ emtii-redis:
     container_name: emtii.redis
     build: ./build/redis
     ports:
